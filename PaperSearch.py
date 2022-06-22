@@ -49,7 +49,12 @@ class PaperSearch(object):
         """
         This function returns the first five references and returns title and author for each citations
         """
-        cite_bibcodes=self.paper.reference[:n]
-        cite_articles=[list(ads.SearchQuery(bibcode=bib, fl=['title','author']))[0] for bib in cite_bibcodes]
+        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'author', 'abstract', 'reference']))[0]
 
-        return [[article.title, article.author] for article in cite_articles]
+        if not paper.reference:
+            print("No reference for this article")
+            return [None]*n
+
+        ref_bibcodes=paper.reference[:n]
+        ref_articles=[list(ads.SearchQuery(bibcode=bib, fl=['title','author']))[0] for bib in ref_bibcodes]
+        return [[article.title, article.author] for article in ref_articles]
