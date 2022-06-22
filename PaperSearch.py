@@ -16,7 +16,7 @@ class PaperSearch(object):
         Searches for the keyword and returns the first paper that matched with the highest citation count
         """
         self.keyword = keyword
-        papers = list(ads.SearchQuery(q=keyword, rows=5, sort="citation_count", fld=['title', "authors", "abs", 'citations', 'reference'])) 
+        papers = list(ads.SearchQuery(q=keyword, rows=5, sort="citation_count", fld=['title', "author", "abs", 'citation', 'reference'])) 
         self.paper = papers[0]
         return self.paper
 
@@ -26,4 +26,11 @@ class PaperSearch(object):
         """
         return [self.paper.title, self.paper.authors, self.paper.abstract]
 
+    def returnCitation(self, n=5):
+        """
+        This function returns the first five citations and returns title and author for each citations
+        """
+        cite_bibcodes=self.paper.citations[:n]
+        cite_articles=[list(ads.SearchQuery(bibcode=bib, fl=['title','author']))[0] for bib in cite_bibcodes]
 
+        return [[article.title, article.author] for article in cite_articles]
