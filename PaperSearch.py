@@ -28,22 +28,24 @@ class PaperSearch(object):
         """
         This function returns the search's paper title, author list, and abstract
         """
-        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'author', 'abstract']))[0]
-        return [paper.title, paper.author, paper.abstract]
+        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract']))[0]
+        return [paper.title, paper.first_author, paper.abstract]
 
     def returnCitation(self, n=5):
         """
         This function returns the first five citations and returns title and author for each citations
         """
-        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'author', 'abstract', 'citation']))[0]
+        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract', 'citation']))[0]
 
         if not paper.citation:
             print("No citations for this article")
             return [None]*n
 
-        cite_bibcodes=paper.citation[:n]
-        cite_articles=[list(ads.SearchQuery(bibcode=bib, fl=['title','author']))[0] for bib in cite_bibcodes]
-        return [[article.title, article.author] for article in cite_articles]
+        cite_bibcodes=paper.citation
+        cite_articles=[list(ads.SearchQuery(bibcode=bib, fl=['title','first_author', 'citation_count']))[0] for bib in cite_bibcodes]
+        cite_sorted=sorted(cite_articles, key=lambda x: x.citation_count, reverse=True)
+        cite_cut=cite_sorted[:n]
+        return [[article.title, article.first_author] for article in cite_cut]
 
     def returnReference(self, n=5):
         """
