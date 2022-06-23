@@ -3,8 +3,22 @@
 import ads
 
 class PaperSearch(object):
+    """
+    PaperSearch class encapsulates paper search queries and returns. 
+    """
 
     def __init__(self, keyword, token):
+        """__init__ a search for a paper
+
+        Note:
+            Must have an ads provided token to search
+
+        Args:
+            keyword (str): the searched for word or phrase.
+            token (string): ads provided token for seraching
+
+        """
+
         # saving input
         self.token = token
         self.keyword = keyword
