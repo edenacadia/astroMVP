@@ -2,7 +2,6 @@
 ## This file should be where all ADS functions are stored
 import ads
 
-
 class PaperSearch(object):
 
     def __init__(self, keyword, token):
