@@ -1,15 +1,14 @@
 
 #ads token limk https://ui.adsabs.harvard.edu/user/settings/token
-
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
 
 # root window
 root = tk.Tk()
-root.geometry("300x150")
+root.geometry("300x170")
 root.resizable(False, False)
-root.title('Sign In')
+root.title('Astro MVP')
 
 # store keyword address and pub_year
 keyword = tk.StringVar()
@@ -35,6 +34,7 @@ keyword_entry = ttk.Entry(submit_frame, textvariable=keyword)
 keyword_entry.pack(fill='x', expand=True)
 keyword_entry.focus()
 
+#To add a search option for the publication year 
 # pub_year
 # pub_year_label = ttk.Label(submit_frame, text="Publication Year:")
 # pub_year_label.pack(fill='x', expand=True)
@@ -42,13 +42,16 @@ keyword_entry.focus()
 # pub_year_entry = ttk.Entry(submit_frame, textvariable=pub_year, show="*")
 # pub_year_entry.pack(fill='x', expand=True)
 
-#submit button
-
 
 #THIS IS WHERE YOU GRAB THE VAlUES SUMBMITTED IN THE TEXTBOX
+keyword_input,token_input = [],[]
 def submit_clicked():
-    print(keyword.get())
-    print(ads.get())
+    keyword_input.append(keyword.get())
+    token_input.append(ads.get())
+    root.destroy()
+    return keyword_input,token_input 
+
+
 
 submit_button = ttk.Button(submit_frame, text="Submit", command=submit_clicked)
 submit_button.pack(fill='x', expand=True, pady=10)
