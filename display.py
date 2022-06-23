@@ -27,8 +27,7 @@ ADS_entry = ttk.Entry(submit_frame, textvariable=ads)
 ADS_entry.pack(fill='x', expand=True)
 ADS_entry.focus()
 
-
-# keyword
+# keywords
 keyword_label = ttk.Label(submit_frame, text="Keyword(s):")
 keyword_label.pack(fill='x', expand=True)
 
