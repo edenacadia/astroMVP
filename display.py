@@ -7,6 +7,14 @@ from tkinter.messagebox import showinfo
 #INPUT DISPLAY
 
 def input():
+    """
+    Interactive box for Input Values
+
+    Returns:
+        the values that the user typed in the box:
+        token_input (string): the users ads token
+        keyword_input (string): the keyword the user gave
+    """
     # root window
     root = tk.Tk()
     root.geometry("300x170")
@@ -68,8 +76,12 @@ def input():
 
 def output(title,authors,abstract): 
 
+    """
+    Displays the output (title,author,abstract) from papersearch.py in box
 
-    output = 'TITLE:'+ title + '\n \n'+ 'AUTHORS: ' + authors + '\n \n' + 'ABSTRACT: ' + abstract
+    """
+
+    output = 'TITLE:'+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract
 
     root = tk.Tk()
     root.title('Astro MVP')
@@ -88,18 +100,10 @@ def output(title,authors,abstract):
 
 #EXAMPLE WITH PRETEND DATA 
 
-title = 'The article title'
-authors ='the authors'
-abstract = 'Porttitor leo a diam sollicitudin tempor. Arcu dui vivamus arcu felis. Augue interdum velit euismod in. Sit amet nulla facilisi morbi tempus iaculis urna. Turpis massa sed elementum tempus egestas sed. Sit amet aliquam id diam maecenas ultricies mi. Nunc mattis enim ut tellus elementum sagittis vitae et. Sit amet massa vitae tortor condimentum lacinia quis. In fermentum posuere urna nec. Ut consequat semper viverra nam libero justo laoreet sit. Consequat semper viverra nam libero justo laoreet. Sagittis eu volutpat odio facilisis mauris. Erat nam at lectus urna duis convallis convallis tellus id. Magna etiam tempor orci eu lobortis elementum nibh. Etiam sit amet nisl purus.'
-output(title,authors,abstract) 
-
-
-
-
-
-
-
-
+# title = 'The article title'
+# authors ='the authors'
+# abstract = 'Porttitor leo a diam sollicitudin tempor. Arcu dui vivamus arcu felis. Augue interdum velit euismod in. Sit amet nulla facilisi morbi tempus iaculis urna. Turpis massa sed elementum tempus egestas sed. Sit amet aliquam id diam maecenas ultricies mi. Nunc mattis enim ut tellus elementum sagittis vitae et. Sit amet massa vitae tortor condimentum lacinia quis. In fermentum posuere urna nec. Ut consequat semper viverra nam libero justo laoreet sit. Consequat semper viverra nam libero justo laoreet. Sagittis eu volutpat odio facilisis mauris. Erat nam at lectus urna duis convallis convallis tellus id. Magna etiam tempor orci eu lobortis elementum nibh. Etiam sit amet nisl purus.'
+# output(title,authors,abstract) 
 
 
 
