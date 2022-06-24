@@ -1,6 +1,7 @@
 #### Created 22 06 2022
 ## This file should be where all ADS functions are stored
 import ads
+import json
 
 class PaperSearch(object):
     """
@@ -21,7 +22,7 @@ class PaperSearch(object):
 
         # saving input
         self.token = token
-        self.keyword = keyword
+        self.keyword = 'abs:'+keyword
         ads.config.token = self.token
         self.keywordSeach(self.keyword)
 
@@ -39,6 +40,8 @@ class PaperSearch(object):
         """
         self.keyword = keyword
         papers = list(ads.SearchQuery(q=keyword,  fl=['id', 'bibcode', 'title', 'citation_count', 'author', 'abstract', 'citation'])) #sort="citation_count"
+
+
         if len(papers) > 0:
             self.paper = papers[0].bibcode
         else:
@@ -59,8 +62,12 @@ class PaperSearch(object):
             author (string): ads first author
             abstract (string): ads provided abstract
         """
-        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract']))[0]
-        return [paper.title, paper.first_author, paper.abstract]
+        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract','links_data']))[0]
+        urls = [] #takes the link_data that's given and spits out just the url
+        for i in paper.links_data: 
+            urls.append(json.loads(i)["url"]) 
+
+        return [paper.title, paper.first_author, paper.abstract,urls]
 
     def returnCitation(self, n=5):
         """
@@ -114,3 +121,8 @@ class PaperSearch(object):
         ref_sorted=sorted(ref_articles, key=lambda x: x.citation_count, reverse=True)
         ref_cut=ref_sorted[:n]
         return [[article.title, article.first_author] for article in ref_cut]
+
+
+search = PaperSearch('supernova','PJKgYB5fogp0CKsIljM0RT1U3B8jCcwE8p60roko').returnPaper()
+
+print (search)
