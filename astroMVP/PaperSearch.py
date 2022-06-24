@@ -66,6 +66,8 @@ class PaperSearch(object):
         urls = [] #takes the link_data that's given and spits out just the url
         for i in paper.links_data: 
             urls.append(json.loads(i)["url"]) 
+        
+        import requests
 
         return [paper.title, paper.first_author, paper.abstract,urls]
 
