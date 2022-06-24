@@ -94,98 +94,18 @@ def output(title,authors,abstract,urls):
 
 
 
-    output = 'TITLE:'+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract + '\n \n'  + 'URL Links: ' + urls[0]
+    output = 'TITLE: '+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract
     quote = output
 
     T.insert(tk.END, quote) 
 
+    url = urls[0]
+    def gotolink():
+        webbrowser.open(url,new=1)
 
+    submit_button = tk.Button(root, text="Go To Paper", pady=0, command=gotolink,bg='white',activebackground='white',fg='black',font = ('Helvetica', 18),justify=tk.RIGHT,activeforeground='white',bd=0)
 
-
-    submit_button = tk.Button(root, text="Go To Paper", pady=0, command=None,
-                              bg='white',activebackground='white',fg='black',
-                              font = ('Helvetica', 18),justify=tk.RIGHT,activeforeground='white',bd=0)
     submit_button.pack(side=tk.BOTTOM,fill='both',expand=True)
 
     tk.mainloop()
-
-
-
-
-#EXAMPLE WITH PRETEND DATA 
-
-# title = ['The article title']
-# authors ='the authors'
-# abstract = 'Porttitor leo a diam sollicitudin tempor. Arcu dui vivamus arcu felis. Augue interdum velit euismod in. Sit amet nulla facilisi morbi tempus iaculis urna. Turpis massa sed elementum tempus egestas sed. Sit amet aliquam id diam maecenas ultricies mi. Nunc mattis enim ut tellus elementum sagittis vitae et. Sit amet massa vitae tortor condimentum lacinia quis. In fermentum posuere urna nec. Ut consequat semper viverra nam libero justo laoreet sit. Consequat semper viverra nam libero justo laoreet. Sagittis eu volutpat odio facilisis mauris. Erat nam at lectus urna duis convallis convallis tellus id. Magna etiam tempor orci eu lobortis elementum nibh. Etiam sit amet nisl purus.'
-# urls = 'www.yahoo.com','lol.com','www.google.com'
-# output(title,authors,abstract,urls) 
-
-
-
-
-### SOME OTHER STUFF TO PLAY WITH LATER: 
-# def frame_sentence():
-#     title = paper_info[0][0]
-#     authors = paper_info[1][0]
-#     abstract = paper_info[2][0]
-
-#     disp_tf.insert(0,f'{title} // {authors} // {abstract}.')
-
-# ws = Tk()
-# ws.title('Astro MVP')
-# ws.geometry('400x500')
-# ws.config(bg='#0f4b6e')
-
-# name_tf = Entry(ws)
-# age_tf = Entry(ws)
-# descipline_tf = Entry(ws)
-
-# name_lbl = Label(
-#     ws,
-#     text='Name',
-#     bg='#0f4b6e',
-#     fg='white'
-# )
-# age_lbl = Label(
-#     ws,
-#     text='Age',
-#     bg='#0f4b6e',
-#     fg='white'
-# )
-
-# descipline_lbl = Label(
-#     ws,
-#     text='Descipline',
-#     bg='#0f4b6e',
-#     fg='white'
-# )
-
-# name_lbl.pack()
-# name_tf.pack()
-# age_lbl.pack()
-# age_tf.pack()
-# descipline_lbl.pack()
-# descipline_tf.pack()
-
-# btn = Button(
-#     ws,
-#     text='Submit',
-#     relief=SOLID,
-#     command=frame_sentence
-# )
-# btn.pack(pady=10)
-
-# disp_tf = Entry(
-#     ws, 
-#     width=38,
-#     font=('Arial', 14)
-#     )
-
-
-# disp_tf.pack(pady=20)
-
-
-# ws.mainloop()
-
-
 
