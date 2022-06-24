@@ -8,11 +8,8 @@ class PaperSearch(object):
     PaperSearch class encapsulates paper search queries and returns. 
     """
 
-    def __init__(self, keyword, token):
+    def __init__(self, keyword):
         """__init__ a search for a paper
-
-        Note:
-            Must have an ads provided token to search
 
         Args:
             keyword (str): the searched for word or phrase.
@@ -21,9 +18,12 @@ class PaperSearch(object):
         """
 
         # saving input
-        self.token = token
         self.keyword = 'abs:'+keyword
-        ads.config.token = self.token
+        ads.config.token = 'otQVJT3lALRZhXC4T7sRFrIF3HTtMf4xOlQ3SDpc'
+        #this a token from a fake ads account I made with a temporary email. Should need to refresh token, but if necessary... 
+        #LOGIN -- 
+        #email: beyebi6100@syswift.com
+        #password: luv2code 
         self.keywordSeach(self.keyword)
 
     def keywordSeach(self, keyword):
@@ -125,6 +125,6 @@ class PaperSearch(object):
         return [[article.title, article.first_author] for article in ref_cut]
 
 
-search = PaperSearch('supernova','PJKgYB5fogp0CKsIljM0RT1U3B8jCcwE8p60roko').returnPaper()
+# search = PaperSearch('supernova').returnPaper()
 
-print (search)
+# print (search)

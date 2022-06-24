@@ -5,10 +5,10 @@ import display
 import PaperSearch as ps
 
 #input
-keyword_input,token_input = display.input()
+keyword_input = display.input()
 
 #paper search
-search1 = ps.PaperSearch(keyword_input[0], token_input[0])
+search1 = ps.PaperSearch(str(keyword_input)) 
 if search1.paper:
     print("bibcode:", search1.paper)
     paper_info = search1.returnPaper()
