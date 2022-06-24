@@ -3,7 +3,9 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter.messagebox import showinfo
-
+from turtle import bgcolor, color, fillcolor
+import webbrowser
+from functools import partial
 #INPUT DISPLAY
 
 def input():
@@ -74,44 +76,49 @@ def input():
 
 #OUTPUT DISPLAY
 
-def output(title,authors,abstract): 
+def output(title,authors,abstract,urls): 
 
     """
     Displays the output (title,author,abstract) from papersearch.py in box
 
     """
 
-    output = 'TITLE:'+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract
-
     root = tk.Tk()
     root.title('Astro MVP')
     S = tk.Scrollbar(root)
-    T = tk.Text(root, height=30, width=100)
-    S.pack(side=tk.RIGHT, fill=tk.Y)
-    T.pack(side=tk.LEFT, fill=tk.Y)
+    T = tk.Text(root, height=10, width=80,font = ('Helvetica', 18),bd=0)
+    S.pack(side=tk.RIGHT)
+    T.pack(side=tk.TOP,fill='both',expand=True) 
     S.config(command=T.yview)
     T.config(yscrollcommand=S.set)
+
+
+
+    output = 'TITLE:'+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract + '\n \n'  + 'URL Links: ' + urls[0]
     quote = output
-    T.insert(tk.END, quote)
+
+    T.insert(tk.END, quote) 
+
+
+
+
+    submit_button = tk.Button(root, text="Go To Paper", pady=0, command=None,
+                              bg='white',activebackground='white',fg='black',
+                              font = ('Helvetica', 18),justify=tk.RIGHT,activeforeground='white',bd=0)
+    submit_button.pack(side=tk.BOTTOM,fill='both',expand=True)
 
     tk.mainloop()
 
 
 
+
 #EXAMPLE WITH PRETEND DATA 
 
-# title = 'The article title'
+# title = ['The article title']
 # authors ='the authors'
 # abstract = 'Porttitor leo a diam sollicitudin tempor. Arcu dui vivamus arcu felis. Augue interdum velit euismod in. Sit amet nulla facilisi morbi tempus iaculis urna. Turpis massa sed elementum tempus egestas sed. Sit amet aliquam id diam maecenas ultricies mi. Nunc mattis enim ut tellus elementum sagittis vitae et. Sit amet massa vitae tortor condimentum lacinia quis. In fermentum posuere urna nec. Ut consequat semper viverra nam libero justo laoreet sit. Consequat semper viverra nam libero justo laoreet. Sagittis eu volutpat odio facilisis mauris. Erat nam at lectus urna duis convallis convallis tellus id. Magna etiam tempor orci eu lobortis elementum nibh. Etiam sit amet nisl purus.'
-# output(title,authors,abstract) 
-
-
-
-
-
-
-
-
+# urls = 'www.yahoo.com','lol.com','www.google.com'
+# output(title,authors,abstract,urls) 
 
 
 
@@ -179,3 +186,6 @@ def output(title,authors,abstract):
 
 
 # ws.mainloop()
+
+
+
