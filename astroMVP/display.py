@@ -47,15 +47,6 @@ def input():
     keyword_entry.pack(fill='x', expand=True)
     keyword_entry.focus()
 
-    #To add a search option for the publication year 
-    # pub_year
-    # pub_year_label = ttk.Label(submit_frame, text="Publication Year:")
-    # pub_year_label.pack(fill='x', expand=True)
-
-    # pub_year_entry = ttk.Entry(submit_frame, textvariable=pub_year, show="*")
-    # pub_year_entry.pack(fill='x', expand=True)
-
-
     #THIS IS WHERE YOU GRAB THE VAlUES SUMBMITTED IN THE TEXTBOX
     keyword_input,token_input = [],[]
     def submit_clicked():
@@ -107,7 +98,7 @@ def output(title,authors,abstract,urls):
 
     the_url = uri_exists(urls)
 
-    output = 'TITLE: '+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract + '\n \n' + 'URL: ' str(the_url) 
+    output = 'TITLE: '+ title[0] + '\n \n' + 'AUTHORS: ' + authors + '\n \n'  + 'ABSTRACT: ' + abstract + '\n \n' + 'URL: ', str(the_url) 
     quote = output
 
     T.insert(tk.END, quote) 
