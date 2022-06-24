@@ -30,7 +30,7 @@ class PaperSearch(object):
         """
         keywordsearch
 
-        Searches for the keyword and returns the first paper that matched with the highest citation count
+        Searches for the keyword in abstracts and returns the first paper that matched with the highest citation count
         
         Args:
             keyword (string): search term. The users desired inquiry
@@ -39,7 +39,7 @@ class PaperSearch(object):
             paper (string): ads provided bibcode for the top result paper
         """
         self.keyword = keyword
-        papers = list(ads.SearchQuery(q=keyword,  fl=['id', 'bibcode', 'title', 'citation_count', 'author', 'abstract', 'citation'])) #sort="citation_count"
+        papers = list(ads.SearchQuery(q=keyword, sort="citation_count",  fl=['id', 'bibcode', 'title', 'citation_count', 'author', 'abstract', 'citation'])) #sort="citation_count"
 
 
         if len(papers) > 0:
