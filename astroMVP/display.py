@@ -71,8 +71,11 @@ def input():
     submit_button = ttk.Button(submit_frame, text="Submit", command=submit_clicked)
     submit_button.pack(fill='x', expand=True, pady=10)
 
+    
+
     root.mainloop()
-    return keyword_input
+    return keyword_input[0]
+    
 
 
 #Test Input Display 

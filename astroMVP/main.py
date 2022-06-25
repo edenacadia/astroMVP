@@ -7,13 +7,12 @@ import PaperSearch as ps
 #input
 keyword_input = display.input()
 
-print (keyword_input)
 #paper search
 search1 = ps.PaperSearch(str(keyword_input)) 
 if search1.paper:
-    print("bibcode:", search1.paper)
+    #print("bibcode:", search1.paper)
     paper_info = search1.returnPaper()
-    print("Paper Returned:", paper_info)
+    #print("Paper Returned:", paper_info)
     title = paper_info[0]
     authors= paper_info[1]
     abstract = paper_info[2]  
