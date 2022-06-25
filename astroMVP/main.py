@@ -7,6 +7,7 @@ import PaperSearch as ps
 #input
 keyword_input = display.input()
 
+print (keyword_input)
 #paper search
 search1 = ps.PaperSearch(str(keyword_input)) 
 if search1.paper:

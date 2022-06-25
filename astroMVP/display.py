@@ -29,7 +29,7 @@ def input():
     frame = tk.Frame(root, width=600, height=400)
     frame.pack()
     frame.place(anchor='center', relx=0.5, rely=0.5)
-    img = ImageTk.PhotoImage(Image.open("astromvplogo.png"))
+    img = ImageTk.PhotoImage(Image.open("../images/astromvplogo.png"))
     label = tk.Label(root, image = img)
     label.pack()
 
@@ -67,15 +67,15 @@ def input():
 
 
 
+
     submit_button = ttk.Button(submit_frame, text="Submit", command=submit_clicked)
     submit_button.pack(fill='x', expand=True, pady=10)
 
     root.mainloop()
+    return keyword_input
 
 
 #Test Input Display 
-# input()
-
 #OUTPUT DISPLAY
 
 def output(title,authors,abstract,urls): 
@@ -91,7 +91,7 @@ def output(title,authors,abstract,urls):
     frame = tk.Frame(root) 
     frame.pack()
     frame.place(anchor='n', relx=0.0, rely=0.0)
-    img = ImageTk.PhotoImage(Image.open("astromvplogo.png"))
+    img = ImageTk.PhotoImage(Image.open("../images/astromvplogo.png"))
     label = tk.Label(root, image = img)
     label.pack()
 
