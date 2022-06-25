@@ -5,15 +5,20 @@ import json
 
 class PaperSearch(object):
     """
-    PaperSearch class encapsulates paper search queries and returns. 
+    Class encapsulates paper search queries and returns. 
     """
 
     def __init__(self, keyword):
-        """__init__ a search for a paper
+        """
+        Initializes a keyword search in research paper abstracts based on the input by user.
 
-        Args:
-            keyword (str): the searched for word or phrase.
-            token (string): ads provided token for seraching
+        Parameters
+        ----------
+        keyword : str
+                Keyword input by the user.
+    
+        token : str
+                ADS provided token for searching (note: not required for users to input).
 
         """
 
@@ -24,22 +29,24 @@ class PaperSearch(object):
         #LOGIN -- 
         #email: beyebi6100@syswift.com
         #password: luv2code 
-        self.keywordSeach(self.keyword)
+        self.keywordSearch(self.keyword)
 
-    def keywordSeach(self, keyword):
+    def keywordSearch(self, keyword):
         """
-        keywordsearch
-
-        Searches for the keyword in abstracts and returns the first paper that matched with the highest citation count
+        Searches for the keyword in abstracts of research papers and returns the first paper with the highest citation count.
         
-        Args:
-            keyword (string): search term. The users desired inquiry
+        Parameters
+        ----------
+        keyword : str
+                Keyword input by user.
 
-        Returns:
-            paper (string): ads provided bibcode for the top result paper
+        Returns
+        -------
+        paper : str
+                An ADS provided bibcode for the top cited paper found with keyword input.
         """
-        self.keyword = keyword
-        papers = list(ads.SearchQuery(q=keyword, sort="citation_count",  fl=['id', 'bibcode', 'title', 'citation_count', 'author', 'abstract', 'citation'])) #sort="citation_count"
+        self.keyword=keyword
+        papers = list(ads.SearchQuery(q=keyword, sort="citation_count",  fl=['id', 'bibcode', 'title', 'citation_count', 'author', 'abstract', 'citation']))
 
 
         if len(papers) > 0:
@@ -49,41 +56,49 @@ class PaperSearch(object):
         return self.paper
 
     def returnPaper(self):
-        """
-        returnPaper
-
-        This function returns the search's paper title, author list, and abstract
+       """
+       Returns the search's paper title, first author, and abstract.
+       
+       Parameters
+       ----------
+       keyword : str
+            Keyword input by user.
         
-        Args:
-            keyword (string): search term. The users desired inquiry
-
-        Returns:
-            title (string): ads provided bibcode for the top result paper
-            author (string): ads first author
-            abstract (string): ads provided abstract
+       Returns
+       -------
+       title : str
+            Title of research paper with highest citation count.
+       author : str
+            First author of research paper with highest citation count.
+       abstract : str
+            Abstract of research paper with highest citation count.
         """
-        paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract','links_data']))[0]
-        urls = [] #takes the link_data that's given and spits out just the url
-        for i in paper.links_data: 
+       paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract','links_data']))[0]
+       urls = [] #takes the link_data that's given and spits out just the url
+       for i in paper.links_data:
             urls.append(json.loads(i)["url"]) 
         
-        import requests
+       import requests
 
-        return [paper.title, paper.first_author, paper.abstract,urls]
+       return [paper.title, paper.first_author, paper.abstract,urls]
 
     def returnCitation(self, n=5):
         """
-        return citation
+        Returns the first *n* papers that cite the initial paper, ordered by citation count.
 
-        This function returns the first n papers that cite the initial paper, ordered by citation count.
+        Parameters
+        ---------- 
+        n : int
+                Number of articles that are returned (default is 5).
 
-        Args: 
-            n (int): number of articles to return. Default is 5
-
-        Returns:
-            list (list): n nested lists of citation articles information
-                list[n, 0] (string): nth article's title
-                list[n, 1] (string): nth article's first author
+        Returns
+        -------
+        list : list
+                n nested lists of citation information of articles.
+        list[n, 0] : str
+                nth article's title.
+        list[n, 1] : str
+                nth article's first author.
         """
         paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'first_author', 'abstract', 'citation']))[0]
 
@@ -99,17 +114,21 @@ class PaperSearch(object):
 
     def returnReference(self, n=5):
         """
-        returns references
+        Returns the first n papers that the initial paper references, ordered by citation count.
 
-        This function returns the first n papers that cite the initial paper, ordered by citation count.
+        Parameters
+        ----------
+        n : int
+                Number of articles to return (default is 5).
 
-        Args: 
-            n (int): number of articles to return. Default is 5
-
-        Returns:
-            list (list): n nested lists of citation articles information
-                list[n, 0] (string): nth article's title
-                list[n, 1] (string): nth article's first author
+        Returns
+        -------
+        list : list
+                n nested lists of citation information of articles.
+        list[n, 0] : str
+                nth article's title.
+        list[n, 1] : str
+                nth article's first author.
 
         """
         paper = list(ads.SearchQuery(bibcode=self.paper, fl=['title', 'author', 'abstract', 'reference']))[0]
