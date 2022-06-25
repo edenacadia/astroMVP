@@ -10,15 +10,16 @@ from PIL import ImageTk, Image
 #Diplsay Input
 def input():
     """
-    Interactive box for Input Values
+    Creates an interative box for the input values.
 
-    Returns:
-        the values that the user typed in the box:
-        token_input (string): the users ads token
-        keyword_input (string): the keyword the user gave
+    Returns
+    -------
+        token_input : str
+                The ADS token that was input into interactive box by user (note: we have provided the token). 
+        keyword_input : str
+                The keyword that was input into interactive box by user.
+
     """
-
-
     # root window
     root = tk.Tk()
     root.resizable(False, False)
@@ -29,7 +30,7 @@ def input():
     frame = tk.Frame(root, width=600, height=400)
     frame.pack()
     frame.place(anchor='center', relx=0.5, rely=0.5)
-    img = ImageTk.PhotoImage(Image.open("../images/astromvplogo.png"))
+    img = ImageTk.PhotoImage(Image.open("../docs/.png"))
     label = tk.Label(root, image = img)
     label.pack()
 
@@ -82,9 +83,23 @@ def input():
 #OUTPUT DISPLAY
 
 def output(title,authors,abstract,urls): 
-
     """
-    Displays the output (title,author,abstract) from papersearch.py in box
+    Displays a new interactive box that contains information (title, author, and abstract) on the most cited research paper found, as well
+    as a link that directs user to the actual paper.
+
+    Parameters
+    ----------
+    title : str
+            Title of research paper with highest citation count from PaperSearch.py.
+    author : str
+            First author of research paper with highest citation count from PaperSearch.py.
+    abstract : str
+            Abstract of research paper with highest citation count from PaperSearch.py.
+
+
+    Returns
+    -------
+    Display box containing infrormation on parameters and a url for the research paper found.
 
     """
 

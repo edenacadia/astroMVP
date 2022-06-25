@@ -6,12 +6,13 @@
 Welcome to astroMVP's documentation!
 ====================================
 
+Contents
+========
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
+   :maxdepth: 1
 
-   papersearch.rst
-
+   The Code <astroMVP>
 
 Indices and tables
 ==================
