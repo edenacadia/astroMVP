@@ -12,6 +12,7 @@ Contents
 .. toctree::
    :maxdepth: 1
 
+   Installation <installation>
    The Code <astroMVP>
 
 Indices and tables
